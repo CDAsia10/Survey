@@ -83,6 +83,9 @@
       margin-top: 20px;
       display: none;
     }
+    textarea {
+    height: 20px !important;
+}
   </style>
 </head>
 <body>
@@ -92,7 +95,7 @@
 </header>
 
 <div class="container">
-  <h2>We Value Your Feedback</h2>
+  <h2>CD Asia Premium & Classic <br> Feedback Form</h2>
   <form id="surveyForm" action="https://script.google.com/macros/s/AKfycbyvAUMNPgXPJbUgl1tgYrdb2aI8kHPUSxL19NWlpH-go81wP7wVG4qdeXtob6h4S6Tg-w/exec" method="POST">
     <div class="question">
       <label for="name">Name</label>
@@ -209,8 +212,14 @@
 <script>
   document.getElementById("surveyForm").addEventListener("submit", function(e) {
     e.preventDefault();
+
     const form = e.target;
     const data = new FormData(form);
+    const submitButton = form.querySelector("button");
+
+    // Disable the submit button and change its text
+    submitButton.disabled = true;
+    submitButton.textContent = "Submitting...";
 
     fetch(form.action, {
       method: 'POST',
@@ -219,14 +228,20 @@
       if (response.ok) {
         document.getElementById("successMessage").style.display = "block";
         form.reset();
+        submitButton.textContent = "Submitted";
       } else {
         alert("There was an error submitting the form.");
+        submitButton.disabled = false;
+        submitButton.textContent = "Submit";
       }
     }).catch(error => {
       alert("Failed to submit: " + error.message);
+      submitButton.disabled = false;
+      submitButton.textContent = "Submit";
     });
   });
 </script>
+
 
 </body>
 </html>
