@@ -1,361 +1,443 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <title>CD Asia Client Survey</title>
-  <link rel="icon" type="image/png" href="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRFxI6p5jOwvmXR3RmW-Ppmev3D0Jt-FG1BSGdba01ekEMSSP23u_KolQezqTDxRV0SQxU&usqp=CAU">
-  <style>
-    body {
-      font-family: 'Segoe UI', sans-serif;
-      background: #f8f9fa;
-      color: #333;
-      margin: 0;
-    }
+<meta charset="UTF-8">
+<title>CD Asia Client Satisfaction Survey</title>
+<link rel="icon" type="image/x-icon" href="./image/fav.png">
 
-    header {
-      background-color: #b3b3b3;
-      padding: 30px 0;
-      text-align: center;
-      margin-bottom: 2rem;
-    }
+<style>
+body {
+  font-family: 'Segoe UI', sans-serif;
+  background-color: #f2f2f2;
+  margin: 0;
+}
 
-    header img {
-      max-width: 200px;
-    }
+/* HEADER */
+header {
+  background-color: #c9c9c9;
+  padding: 20px 0;
+  text-align: center;
+}
+header img {
+  max-height: 50px;
+}
 
-    h2 {
-      background-color: #b30000;
-      color: white;
-      padding: 10px;
-      border-radius: 6px;
-      font-size: 1.2rem;
-    }
+/* CARD */
+.container {
+  max-width: 900px;
+  background: #fff;
+  margin: 40px auto;
+  padding: 35px;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+}
 
-    form {
-      max-width: 800px;
-      margin: 0 auto;
-      background: white;
-      padding: 2rem;
-      border-radius: 12px;
-      box-shadow: 0 5px 15px rgba(0,0,0,0.1);
-    }
+h2 {
+  text-align: center;
+  margin-bottom: 30px;
+}
 
-    .question {
-      margin-bottom: 1.5rem;
-    }
-
-    label {
-      display: block;
-      font-weight: bold;
-      margin-bottom: 0.3rem;
-    }
-
-    input[type="text"], input[type="date"], textarea {
-      width: 100%;
-      padding: 0.5rem;
-      margin-top: 0.3rem;
-      border: 1px solid #ccc;
-      border-radius: 6px;
-    }
-
-    input[type="radio"], input[type="checkbox"] {
-      margin-right: 5px;
-    }
-
-    textarea {
-      resize: vertical;
-    }
-
-    button {
-      padding: 0.75rem 2rem;
-      font-size: 1rem;
-      background-color: #b30000;
-      color: white;
-      border: none;
-      border-radius: 8px;
-      cursor: pointer;
-    }
-
-    button:disabled {
-      background-color: #aaa;
-      cursor: not-allowed;
-    }
-
-    textarea {
-      height: 20px !important;
-    }
-
-    input[type="date"] {
-      font-size: 15px;
-    }   
-
-    .modal {
-      display: none;
-      position: fixed;
-      z-index: 999;
-      left: 0; top: 0;
-      width: 100%; height: 100%;
-      background: rgba(0, 0, 0, 0.4);
-    }
-
-    .modal-content {
-      background-color: #fff;
-      margin: 10% auto;
-      padding: 2rem;
-      border-radius: 12px;
-      width: 90%;
-      max-width: 400px;
-      box-shadow: 0 5px 20px rgba(0,0,0,0.2);
-      text-align: center;
-      font-family: 'Segoe UI', sans-serif;
-    }
-
-    .modal-content h2 {
-      margin-top: 0;
-      color: #ffffff;
-    }
-
-    .modal-content button {
-      margin-top: 1.5rem;
-      padding: 0.5rem 1.2rem;
-      background: #0066cc;
-      color: white;
-      border: none;
-      border-radius: 6px;
-      cursor: pointer;
-      font-size: 1rem;
-    }
-
-    .modal-content button:hover {
-      background: #005bb5;
-    }
-
-    h1 {
-      color: #000;
-      text-align: center;
-      margin-bottom: 25px;
-    }
-    .flex-row {
-  display: flex;
+/* BASIC INFO */
+.basic-info {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
   gap: 20px;
-  flex-wrap: wrap;
+  margin-bottom: 30px;
 }
 
-.flex-row .half {
-  flex: 1;
-  min-width: 250px;
+.question {
+  margin-bottom: 20px;
+  margin-right: 20px;
 }
-.flex-row input {
-    width: 95%;
+
+label {
+  font-weight: 600;
+  display: block;
+  margin-bottom: 6px;
 }
-  </style>
+
+small {
+  display: block;
+  margin-bottom: 8px;
+  color: #555;
+}
+
+input[type="text"],
+input[type="email"],
+textarea,
+select {
+  width: 100%;
+  padding: 10px;
+  border-radius: 6px;
+  border: 1px solid #ccc;
+}
+
+textarea {
+  resize: vertical;
+  min-height: 80px;
+}
+
+/* SECTION HEADER */
+.section-header {
+  background-color: #b30000;
+  color: white;
+  padding: 12px 15px;
+  border-radius: 6px;
+  font-weight: bold;
+  margin: 35px 0 20px;
+}
+
+/* STAR RATING */
+.star-rating {
+  direction: rtl;
+  display: inline-flex;
+}
+.star-rating input {
+  display: none;
+}
+.star-rating label {
+  font-size: 28px;
+  color: #ccc;
+  cursor: pointer;
+}
+.star-rating input:checked ~ label,
+.star-rating label:hover,
+.star-rating label:hover ~ label {
+  color: #f5b301;
+}
+
+/* CHECKBOX */
+.checkbox-group label {
+  font-weight: normal;
+}
+
+/* BUTTON */
+button {
+  width: 100%;
+  margin-top: 30px;
+  padding: 14px;
+  background-color: #b30000;
+  color: white;
+  font-size: 16px;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+}
+button:hover {
+  background-color: #990000;
+}
+
+#successMessage {
+  text-align: center;
+  color: green;
+  margin-top: 15px;
+  display: none;
+}
+
+/* MOBILE */
+@media (max-width: 600px) {
+  .basic-info {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* Modal Background */
+.modal {
+  display: none;
+  position: fixed;
+  z-index: 1000;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0,0,0,0.6);
+}
+
+/* Modal Box */
+.modal-content {
+  background: #fff;
+  width: 90%;
+  max-width: 400px;
+  margin: 15% auto;
+  padding: 25px;
+  text-align: center;
+  border-radius: 10px;
+  box-shadow: 0 8px 20px rgba(0,0,0,0.2);
+}
+
+.modal-content h3 {
+  color: #b30000;
+  margin-bottom: 10px;
+}
+
+.modal-content button {
+  margin-top: 15px;
+  background-color: #b30000;
+  color: #fff;
+  border: none;
+  padding: 10px 25px;
+  border-radius: 6px;
+  font-size: 15px;
+  cursor: pointer;
+}
+
+.modal-content button:hover {
+  background-color: #990000;
+}
+
+</style>
 </head>
+
 <body>
-  <header>
-    <img src="https://cdasia.com/wp-content/uploads/2023/07/CDAsia-Primary-Logo-w_-Tagline_3-1024x388.png" alt="CD Asia Logo">
-  </header>
 
-  <form id="surveyForm" action="https://script.google.com/macros/s/AKfycbyvAUMNPgXPJbUgl1tgYrdb2aI8kHPUSxL19NWlpH-go81wP7wVG4qdeXtob6h4S6Tg-w/exec" method="POST">
-    <h1>CD Asia Premium & Classic <br> Feedback Form</h1>
+<header>
+  <img src="./image/cdasia logo.png" alt="CD Asia Logo">
+</header>
 
-    <div class="flex-row">
-      <div class="question half">
-        <label for="name">Name:</label>
-        <input type="text" name="name" id="name" placeholder="Your name" required>
-      </div>  
+<div class="container">
+<h2>CD Asia Premium & Classic<br>Feedback Form</h2>
 
-      <div class="question half">
-        <label for="email">Email Address:</label>
-        <input type="text" name="email" id="email" placeholder="Your email address" required>
-      </div>
-    </div>
-
-    <div class="flex-row">
-      <div class="question half">
-        <label for="address">Address:</label>
-        <input type="text" name="address" id="address" placeholder="Your address" required>
-      </div>
-
-      <div class="question half">
-        <label for="contact">Contact Number (optional):</label>
-        <input type="text" name="contact" id="contact" placeholder="Your contact number">
-      </div>
-    </div>
-
-    <h2>Section 1: Overall Experience</h2>
-    <div class="question">
-      <label>1. How would you rate your overall experience?</label>
-      <input type="radio" name="q1_experience" value="Excellent" required> Excellent<br>
-      <input type="radio" name="q1_experience" value="Good"> Good<br>
-      <input type="radio" name="q1_experience" value="Fair"> Fair<br>
-      <input type="radio" name="q1_experience" value="Poor"> Poor
-    </div>
-
-    <div class="question">
-      <label>2. Does it meet your expectations?</label>
-      <input type="radio" name="q2_expectations" value="Exceeds expectations" required> Exceeds expectations<br>
-      <input type="radio" name="q2_expectations" value="Meets expectations"> Meets expectations<br>
-      <input type="radio" name="q2_expectations" value="Falls slightly short"> Falls slightly short<br>
-      <input type="radio" name="q2_expectations" value="Does not meet expectations"> Does not meet expectations
-    </div>
-
-    <h2>Section 2: Usability & Interface</h2>
-    <div class="question">
-      <label>3. CD Asia is easy to navigate.</label>
-      <input type="radio" name="q3_navigation" value="Strongly agree" required> Strongly agree<br>
-      <input type="radio" name="q3_navigation" value="Agree"> Agree<br>
-      <input type="radio" name="q3_navigation" value="Neutral"> Neutral<br>
-      <input type="radio" name="q3_navigation" value="Disagree"> Disagree<br>
-      <input type="radio" name="q3_navigation" value="Strongly disagree"> Strongly disagree
-    </div>
-
-    <div class="question">
-      <label>4. Are any features difficult to use?</label>
-      <input type="radio" name="q4_difficult" value="Yes" required> Yes
-      <input type="radio" name="q4_difficult" value="No"> No<br>
-      <input type="text" name="q4_specify" placeholder="If yes, please specify">
-    </div>
-
-    <h2>Section 3: Functionality & Performance</h2>
-    <div class="question">
-      <label>5. Search results are accurate.</label>
-      <input type="radio" name="q5_results" value="Strongly agree" required> Strongly agree<br>
-      <input type="radio" name="q5_results" value="Agree"> Agree<br>
-      <input type="radio" name="q5_results" value="Neutral"> Neutral<br>
-      <input type="radio" name="q5_results" value="Disagree"> Disagree<br>
-      <input type="radio" name="q5_results" value="Strongly disagree"> Strongly disagree
-    </div>
-
-    <div class="question">
-      <label>6. Have you encountered bugs?</label>
-      <input type="radio" name="q6_issues" value="Yes" required> Yes
-      <input type="radio" name="q6_issues" value="No"> No<br>
-      <textarea name="q6_describe" placeholder="If yes, please describe"></textarea>
-    </div>
-
-    <h2>Section 4: Usefulness & Value</h2>
-    <div class="question">
-      <label>7. Helpful for legal research?</label>
-      <input type="radio" name="q7_helpful" value="Strongly agree" required> Strongly agree<br>
-      <input type="radio" name="q7_helpful" value="Agree"> Agree<br>
-      <input type="radio" name="q7_helpful" value="Neutral"> Neutral<br>
-      <input type="radio" name="q7_helpful" value="Disagree"> Disagree<br>
-      <input type="radio" name="q7_helpful" value="Strongly disagree"> Strongly disagree
-    </div>
-
-    <div class="question">
-      <label>8. Most helpful features?</label>
-      <textarea name="q8_features"></textarea>
-    </div>
-
-    <div class="question">
-      <label>9. Do you use other legal apps?</label>
-      <input type="radio" name="q9_otherapps" value="Yes" required> Yes
-      <input type="radio" name="q9_otherapps" value="No"> No<br>
-      <input type="text" name="q9_identify" placeholder="If yes, please identify">
-    </div>
-
-    <div class="question">
-      <label>10. Comparison with others?</label>
-      <textarea name="q10_compare"></textarea>
-    </div>
-
-    <h2>Section 5: Training & Support</h2>
-    <div class="question">
-      <label>11. Is support helpful?</label>
-      <input type="radio" name="q11_support" value="Strongly agree" required> Strongly agree<br>
-      <input type="radio" name="q11_support" value="Agree"> Agree<br>
-      <input type="radio" name="q11_support" value="Neutral"> Neutral<br>
-      <input type="radio" name="q11_support" value="Disagree"> Disagree<br>
-      <input type="radio" name="q11_support" value="Strongly disagree"> Strongly disagree
-    </div>
-
-    <div class="question">
-      <label>12. Refresher training?</label>
-      <input type="radio" name="q12_training" value="Yes" required> Yes
-      <input type="radio" name="q12_training" value="No"> No
-      <input type="radio" name="q12_training" value="Will contact you if I need one"> Will contact you if I need one<br>
-      <label>If Yes, preferred date:</label>
-      <input type="date" name="q12_date">
-    </div>
-
-    <h2>Section 6: Final Thoughts</h2>
-    <div class="question">
-      <label>13. Suggestions for improvements?</label>
-      <textarea name="q13_improvements"></textarea>
-    </div>
-
-    <div class="question">
-      <label>14. Other comments?</label>
-      <textarea name="q14_comments"></textarea>
-    </div>
-
-    <button type="submit" disabled>Submit</button>
-  </form>
-
-  <div id="successModal" class="modal">
-    <div class="modal-content">
-      <h2>Thank you for your feedback!</h2>
-      <p>We appreciate your time in helping us improve.</p>
-      <button onclick="closeModal()">Close</button>
-    </div>
+<form id="surveyForm" 
+      action="https://script.google.com/macros/s/AKfycbx6s6hfWfMIxwAEfhhiX5micizpibECWT5CYAC-4qcUDKc_xmXE-g5Huu0-k41ETNeBpg/exec" 
+      method="POST"
+      target="hidden_iframe"
+      onsubmit="handleSubmit()">
+<!-- BASIC INFORMATION -->
+<div class="basic-info">
+  <div class="question">
+    <label>Name</label>
+    <input type="text" name="name">
   </div>
 
-  <script>
-    function closeModal() {
-      document.getElementById("successModal").style.display = "none";
-    }
+  <div class="question">
+    <label>Email Address</label>
+    <input type="email" name="email">
+  </div>
 
-    const form = document.getElementById("surveyForm");
-    const submitButton = form.querySelector("button[type='submit']");
+  <div class="question">
+    <label>Address</label>
+    <input type="text" name="address">
+  </div>
 
-    form.addEventListener("submit", function(e) {
-      e.preventDefault();
-      const data = new FormData(form);
-      submitButton.disabled = true;
-      submitButton.textContent = "Submitting...";
+  <div class="question">
+    <label>Contact Number (optional)</label>
+    <input type="text" name="contact">
+  </div>
+</div>
 
-      fetch(form.action, {
-        method: 'POST',
-        body: data
-      }).then(response => {
-        if (response.ok) {
-          form.reset();
-          document.getElementById("successModal").style.display = "block";
-          submitButton.textContent = "Submitted";
-          submitButton.disabled = true;
-        } else {
-          alert("Error submitting form.");
-          submitButton.disabled = false;
-          submitButton.textContent = "Submit";
-        }
-      }).catch(error => {
-        alert("Failed to submit: " + error.message);
-        submitButton.disabled = false;
-        submitButton.textContent = "Submit";
-      });
-    });
+<!-- SECTION 1 -->
+<div class="section-header">Section 1: General Information</div>
 
-    function checkRequiredFields() {
-      const requiredRadios = [
-        'q1_experience', 'q2_expectations', 'q3_navigation',
-        'q4_difficult', 'q5_results', 'q6_issues',
-        'q7_helpful', 'q9_otherapps', 'q11_support', 'q12_training'
-      ];
+<div class="question">
+  <label>How often do you use CD Asia?</label>
+  <input type="radio" name="usage_frequency" value="Daily"> Daily<br>
+  <input type="radio" name="usage_frequency" value="Weekly"> Weekly<br>
+  <input type="radio" name="usage_frequency" value="Monthly"> Monthly<br>
+  <input type="radio" name="usage_frequency" value="Rarely"> Rarely
+</div>
 
-      let allFilled = true;
-      requiredRadios.forEach(name => {
-        const group = form.querySelectorAll(`input[name="${name}"]`);
-        const isChecked = Array.from(group).some(input => input.checked);
-        if (!isChecked) allFilled = false;
-      });
+<div class="question">
+  <label>What is your primary purpose for using CD Asia?</label>
+  <small>(e.g., legal research, academic study, professional work, personal learning)</small>
+  <input type="text" name="primary_purpose">
+</div>
 
-      submitButton.disabled = !allFilled;
-    }
+<!-- SECTION 2 -->
+<div class="section-header">Section 2: User Experience</div>
 
-    form.addEventListener("input", checkRequiredFields);
-    form.addEventListener("change", checkRequiredFields);
-    window.addEventListener("load", checkRequiredFields);
-  </script>
+<div class="question">
+  <label>Ease of navigation on CD Asia</label>
+  <small>(1 = Very Difficult, 5 = Very Easy)</small>
+  <div class="star-rating">
+    <input type="radio" name="navigation_rating" value="5" id="nav5"><label for="nav5">★</label>
+    <input type="radio" name="navigation_rating" value="4" id="nav4"><label for="nav4">★</label>
+    <input type="radio" name="navigation_rating" value="3" id="nav3"><label for="nav3">★</label>
+    <input type="radio" name="navigation_rating" value="2" id="nav2"><label for="nav2">★</label>
+    <input type="radio" name="navigation_rating" value="1" id="nav1"><label for="nav1">★</label>
+  </div>
+</div>
+
+<div class="question">
+  <label>Speed and reliability of the platform</label>
+  <small>(1 = Very Dissatisfied, 5 = Very Satisfied)</small>
+  <div class="star-rating">
+    <input type="radio" name="speed_rating" value="5" id="spd5"><label for="spd5">★</label>
+    <input type="radio" name="speed_rating" value="4" id="spd4"><label for="spd4">★</label>
+    <input type="radio" name="speed_rating" value="3" id="spd3"><label for="spd3">★</label>
+    <input type="radio" name="speed_rating" value="2" id="spd2"><label for="spd2">★</label>
+    <input type="radio" name="speed_rating" value="1" id="spd1"><label for="spd1">★</label>
+  </div>
+</div>
+
+<div class="question">
+  <label>Relevance, accuracy, and helpfulness of search results</label>
+  <small>(1 = Not Relevant, Accurate and Helpful, 5 = Very Relevant, Accurate and Helpful)</small>
+  <div class="star-rating">
+    <input type="radio" name="search_rating" value="5" id="sr5"><label for="sr5">★</label>
+    <input type="radio" name="search_rating" value="4" id="sr4"><label for="sr4">★</label>
+    <input type="radio" name="search_rating" value="3" id="sr3"><label for="sr3">★</label>
+    <input type="radio" name="search_rating" value="2" id="sr2"><label for="sr2">★</label>
+    <input type="radio" name="search_rating" value="1" id="sr1"><label for="sr1">★</label>
+  </div>
+</div>
+
+<div class="question checkbox-group">
+  <label>What features do you find most helpful? (Select all that apply)</label>
+  <label><input type="checkbox" name="helpful_features[]" value="Search template"> Search template</label><br>
+  <label><input type="checkbox" name="helpful_features[]" value="Comprehensive content"> Comprehensive content</label><br>
+  <label><input type="checkbox" name="helpful_features[]" value="Document view"> Document view</label><br>
+  <label><input type="checkbox" name="helpful_features[]" value="Subject index"> Subject index</label><br>
+  <label><input type="checkbox" name="helpful_features[]" value="Automatic citation"> Automatic citation</label><br>
+  <label>Others:</label>
+  <input type="text" name="helpful_features_other">
+</div>
+
+<div class="question">
+  <label>What features can be improved?</label>
+  <input type="text" name="features_to_improve">
+</div>
+
+<!-- SECTION 3 -->
+<div class="section-header">Section 3: Content Quality and Availability</div>
+
+<div class="question">
+  <label>Accuracy and relevance of the information provided</label>
+  <small>(1 = Poor, 5 = Excellent)</small>
+  <div class="star-rating">
+    <input type="radio" name="content_rating" value="5" id="cr5"><label for="cr5">★</label>
+    <input type="radio" name="content_rating" value="4" id="cr4"><label for="cr4">★</label>
+    <input type="radio" name="content_rating" value="3" id="cr3"><label for="cr3">★</label>
+    <input type="radio" name="content_rating" value="2" id="cr2"><label for="cr2">★</label>
+    <input type="radio" name="content_rating" value="1" id="cr1"><label for="cr1">★</label>
+  </div>
+</div>
+
+<div class="question">
+  <label>Are there any resources or topics you would like included in the database?</label>
+  <textarea name="requested_resources"></textarea>
+</div>
+
+<div class="question">
+  <label>Do you use any other legal research application?</label>
+  <input type="radio" name="other_application" value="Yes"> Yes
+  <input type="radio" name="other_application" value="No"> No
+</div>
+
+<div class="question">
+  <label>If yes, please identify:</label>
+  <input type="text" name="other_application_name">
+</div>
+
+<div class="question">
+  <label>What feature/s do you like about this application?</label>
+  <input type="text" name="other_application_features">
+</div>
+
+<!-- SECTION 4 -->
+<div class="section-header">Section 4: Support & Service</div>
+
+<div class="question">
+  <label>Customer support satisfaction</label>
+  <small>(1 = Very Dissatisfied, 5 = Very Satisfied)</small>
+  <div class="star-rating">
+    <input type="radio" name="support_rating" value="5" id="sup5"><label for="sup5">★</label>
+    <input type="radio" name="support_rating" value="4" id="sup4"><label for="sup4">★</label>
+    <input type="radio" name="support_rating" value="3" id="sup3"><label for="sup3">★</label>
+    <input type="radio" name="support_rating" value="2" id="sup2"><label for="sup2">★</label>
+    <input type="radio" name="support_rating" value="1" id="sup1"><label for="sup1">★</label>
+  </div>
+</div>
+
+<div class="question">
+  <label>Have you attended any CD Asia training or webinars?</label>
+  <input type="radio" name="training_attended" value="Yes"> Yes
+  <input type="radio" name="training_attended" value="No"> No
+</div>
+
+<div class="question">
+  <label>If yes, how helpful were they?</label>
+  <small>(1 = Not Helpful, 5 = Very Helpful)</small>
+  <div class="star-rating">
+    <input type="radio" name="training_rating" value="5" id="tr5"><label for="tr5">★</label>
+    <input type="radio" name="training_rating" value="4" id="tr4"><label for="tr4">★</label>
+    <input type="radio" name="training_rating" value="3" id="tr3"><label for="tr3">★</label>
+    <input type="radio" name="training_rating" value="2" id="tr2"><label for="tr2">★</label>
+    <input type="radio" name="training_rating" value="1" id="tr1"><label for="tr1">★</label>
+  </div>
+</div>
+
+<div class="question">
+  <label>Would you be interested in attending a training session or refresher training?</label>
+  <input type="radio" name="training_interest" value="Yes"> Yes
+  <input type="radio" name="training_interest" value="No"> No
+</div>
+
+<!-- SECTION 5 -->
+<div class="section-header">Section 5: Overall Satisfaction</div>
+
+<div class="question">
+  <label>Overall satisfaction with CD Asia</label>
+  <small>(1 = Very Dissatisfied, 5 = Very Satisfied)</small>
+  <div class="star-rating">
+    <input type="radio" name="overall_rating" value="5" id="ov5"><label for="ov5">★</label>
+    <input type="radio" name="overall_rating" value="4" id="ov4"><label for="ov4">★</label>
+    <input type="radio" name="overall_rating" value="3" id="ov3"><label for="ov3">★</label>
+    <input type="radio" name="overall_rating" value="2" id="ov2"><label for="ov2">★</label>
+    <input type="radio" name="overall_rating" value="1" id="ov1"><label for="ov1">★</label>
+  </div>
+</div>
+
+<div class="question">
+  <label>Would you recommend CD Asia to others?</label>
+  <select name="recommendation">
+    <option>Definitely</option>
+    <option>Probably</option>
+    <option>Not Sure</option>
+    <option>Probably Not</option>
+    <option>Definitely Not</option>
+  </select>
+</div>
+
+<!-- SECTION 6 -->
+<div class="section-header">Section 6: Suggestions and Comments</div>
+
+<div class="question">
+  <label>What improvements would you like to see in CD Asia?</label>
+  <textarea name="improvements"></textarea>
+</div>
+
+<div class="question">
+  <label>Any additional comments or feedback?</label>
+  <textarea name="additional_comments"></textarea>
+</div>
+
+<button type="submit">Submit</button>
+<div id="successMessage">Submitted successfully.</div>
+
+</form>
+</div>
+<div id="thankYouModal" class="modal">
+  <div class="modal-content">
+    <h3>Thank you for your feedback!</h3>
+    <p>Your response has been successfully submitted.</p>
+    <button onclick="closeModal()">OK</button>
+  </div>
+</div>
+<script>
+  function handleSubmit() {
+    setTimeout(() => {
+      document.getElementById("surveyForm").reset();
+      document.getElementById("thankYouModal").style.display = "block";
+    }, 500); // give GAS time to save
+  }
+
+  function closeModal() {
+    document.getElementById("thankYouModal").style.display = "none";
+  }
+</script>
+
+
+<iframe name="hidden_iframe" style="display:none;"></iframe>
+
 </body>
 </html>
