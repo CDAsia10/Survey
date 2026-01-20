@@ -17,10 +17,42 @@ header {
   background-color: #c9c9c9;
   padding: 20px 0;
   text-align: center;
+
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 1000;
+
+  transition: all 0.3s ease;
 }
+
+/* Shrinked header */
+header.shrink {
+  padding: 8px 0;
+}
+
+/* Hide header */
+header.hide {
+  transform: translateY(-100%);
+}
+
 header img {
   max-height: 50px;
+  transition: max-height 0.3s ease;
 }
+
+/* Shrink logo */
+header.shrink img {
+  max-height: 35px;
+}
+
+/* Space for fixed header */
+body {
+  margin: 0;
+  padding-top: 90px;
+}
+
 
 /* CARD */
 .container {
@@ -185,17 +217,21 @@ button:hover {
   background-color: #990000;
 }
 
+.label {
+  font-weight: 600 !important;
+}
+
 </style>
 </head>
 
 <body>
 
-<header>
+<header id="mainHeader">
   <img src="./image/cdasia logo.png" alt="CD Asia Logo">
 </header>
 
 <div class="container">
-<h2>CD ASIA<br>FEEDBACK FORM</h2>
+<h2>CD Asia Feedback Form</h2>
 
 <form id="surveyForm" 
       action="https://script.google.com/macros/s/AKfycbx6s6hfWfMIxwAEfhhiX5micizpibECWT5CYAC-4qcUDKc_xmXE-g5Huu0-k41ETNeBpg/exec" 
@@ -210,13 +246,13 @@ button:hover {
   </div>
 
   <div class="question">
-    <label>Email Address</label>
-    <input type="email" name="email">
+    <label>Address</label>
+    <input type="text" name="address">
   </div>
 
   <div class="question">
-    <label>Address</label>
-    <input type="text" name="address">
+    <label>Email Address</label>
+    <input type="email" name="email">
   </div>
 
   <div class="question">
@@ -246,7 +282,7 @@ button:hover {
 <div class="section-header">Section 2: User Experience</div>
 
 <div class="question">
-  <label>How would you rate the ease of navigation on CD Asia? </label>
+  <label>How would you rate the ease of navigation on CD Asia? (Click on applicable star. The movement will be from left to right. The star clicked and all others to its left will be colored. The number of colored stars will represent the rating.)</label>
   <div class="star-rating">
     <input type="radio" name="navigation_rating" value="5" id="nav5"><label for="nav5">★</label>
     <input type="radio" name="navigation_rating" value="4" id="nav4"><label for="nav4">★</label>
@@ -282,12 +318,12 @@ button:hover {
 </div>
 
 <div class="question checkbox-group">
-  <label>What features do you find most helpful?</label>
-  <label><input type="checkbox" name="helpful_features[]" value="Search template"> Search template</label><br>
-  <label><input type="checkbox" name="helpful_features[]" value="Comprehensive content"> Comprehensive content</label><br>
-  <label><input type="checkbox" name="helpful_features[]" value="Document view"> Document view</label><br>
-  <label><input type="checkbox" name="helpful_features[]" value="Subject index"> Subject index</label><br>
-  <label><input type="checkbox" name="helpful_features[]" value="Automatic citation"> Automatic citation</label><br>
+  <label class="label">What features do you find most helpful?</label>
+  <label><input type="checkbox" name="helpful_features[]" value="Search template"> Search template</label>
+  <label><input type="checkbox" name="helpful_features[]" value="Comprehensive content"> Comprehensive content</label>
+  <label><input type="checkbox" name="helpful_features[]" value="Document view"> Document view</label>
+  <label><input type="checkbox" name="helpful_features[]" value="Subject index"> Subject index</label>
+  <label><input type="checkbox" name="helpful_features[]" value="Automatic citation"> Automatic citation</label>
   <label>Others:</label>
   <input type="text" name="helpful_features_other">
 </div>
@@ -389,13 +425,11 @@ button:hover {
 
 <div class="question">
   <label>Would you recommend CD Asia to others?</label>
-  <select name="recommendation">
-    <option>Definitely</option>
-    <option>Probably</option>
-    <option>Not Sure</option>
-    <option>Probably Not</option>
-    <option>Definitely Not</option>
-  </select>
+  <input type="radio" name="recommendation" value="Definitely"> Definitely<br>
+  <input type="radio" name="recommendation" value="Probably"> Probably<br>
+  <input type="radio" name="recommendation" value="Not Sure"> Not Sure<br>
+  <input type="radio" name="recommendation" value="Probably Not"> Probably Not<br>
+  <input type="radio" name="recommendation" value="Definitely Not"> Definitely Not
 </div>
 
 <!-- SECTION 6 -->
@@ -434,6 +468,29 @@ button:hover {
   function closeModal() {
     document.getElementById("thankYouModal").style.display = "none";
   }
+
+   let lastScrollTop = 0;
+  const header = document.getElementById("mainHeader");
+
+  window.addEventListener("scroll", function () {
+    let scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+
+    // Shrink header after scrolling
+    if (scrollTop > 50) {
+      header.classList.add("shrink");
+    } else {
+      header.classList.remove("shrink");
+    }
+
+    // Hide on scroll down, show on scroll up
+    if (scrollTop > lastScrollTop && scrollTop > 100) {
+      header.classList.add("hide");
+    } else {
+      header.classList.remove("hide");
+    }
+
+    lastScrollTop = scrollTop;
+  });
 </script>
 
 
@@ -441,4 +498,3 @@ button:hover {
 
 </body>
 </html>
-
