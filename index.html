@@ -264,23 +264,23 @@ button:hover {
       action="https://script.google.com/macros/s/AKfycbx6s6hfWfMIxwAEfhhiX5micizpibECWT5CYAC-4qcUDKc_xmXE-g5Huu0-k41ETNeBpg/exec" 
       method="POST"
       target="hidden_iframe"
-      onsubmit="handleSubmit()">
+      onsubmit="return validateAndSubmit(event)">
 <!-- BASIC INFORMATION -->
 <div class="basic-info">
-  <div class="question">
-    <label>Name</label>
-    <input type="text" name="name">
-  </div>
+<div class="question">
+  <label>Name</label>
+  <input type="text" name="name" required>
+</div>
 
-  <div class="question">
-    <label>Address</label>
-    <input type="text" name="address">
-  </div>
+<div class="question">
+  <label>Address</label>
+  <input type="text" name="address" required>
+</div>
 
-  <div class="question">
-    <label>Email Address</label>
-    <input type="email" name="email">
-  </div>
+<div class="question">
+  <label>Email Address</label>
+  <input type="email" name="email" required>
+</div>
 
   <div class="question">
     <label>Contact Number (optional)</label>
@@ -293,7 +293,7 @@ button:hover {
 
 <div class="question">
   <label>How often do you use CD Asia?</label>
-  <input type="radio" name="usage_frequency" value="Daily"> Daily<br>
+  <input type="radio" name="usage_frequency" value="Daily" required> Daily<br>
   <input type="radio" name="usage_frequency" value="Weekly"> Weekly<br>
   <input type="radio" name="usage_frequency" value="Monthly"> Monthly<br>
   <input type="radio" name="usage_frequency" value="Rarely"> Rarely
@@ -302,7 +302,7 @@ button:hover {
 <div class="question">
   <label>What is your primary purpose for using CD Asia?</label>
   <small><i>(e.g., legal research, academic study, professional work, personal learning)</i></small>
-  <input type="text" name="primary_purpose">
+  <input type="text" name="primary_purpose" required>
 </div>
 
 <!-- SECTION 2 -->
@@ -311,7 +311,7 @@ button:hover {
 <div class="question">
   <label>How would you rate the ease of navigation on CD Asia?</label>
   <div class="star-rating">
-    <input type="radio" name="navigation_rating" value="5" id="nav5"><label for="nav5">★</label>
+    <input type="radio" name="navigation_rating" value="5" id="nav5" required><label for="nav5">★</label>
     <input type="radio" name="navigation_rating" value="4" id="nav4"><label for="nav4">★</label>
     <input type="radio" name="navigation_rating" value="3" id="nav3"><label for="nav3">★</label>
     <input type="radio" name="navigation_rating" value="2" id="nav2"><label for="nav2">★</label>
@@ -323,7 +323,7 @@ button:hover {
 <div class="question">
   <label>How satisfied are you with the speed and reliability of the platform?</label>
   <div class="star-rating">
-    <input type="radio" name="speed_rating" value="5" id="spd5"><label for="spd5">★</label>
+    <input type="radio" name="speed_rating" value="5" id="spd5" required><label for="spd5">★</label>
     <input type="radio" name="speed_rating" value="4" id="spd4"><label for="spd4">★</label>
     <input type="radio" name="speed_rating" value="3" id="spd3"><label for="spd3">★</label>
     <input type="radio" name="speed_rating" value="2" id="spd2"><label for="spd2">★</label>
@@ -335,7 +335,7 @@ button:hover {
 <div class="question">
   <label>How relevant, accurate and helpful are the search results?</label>
   <div class="star-rating">
-    <input type="radio" name="search_rating" value="5" id="sr5"><label for="sr5">★</label>
+    <input type="radio" name="search_rating" value="5" id="sr5" required><label for="sr5">★</label>
     <input type="radio" name="search_rating" value="4" id="sr4"><label for="sr4">★</label>
     <input type="radio" name="search_rating" value="3" id="sr3"><label for="sr3">★</label>
     <input type="radio" name="search_rating" value="2" id="sr2"><label for="sr2">★</label>
@@ -357,7 +357,7 @@ button:hover {
 
 <div class="question">
   <label>What features can be improved?</label>
-  <input type="text" name="features_to_improve">
+  <input type="text" name="features_to_improve" required>
 </div>
 
 <!-- SECTION 3 -->
@@ -366,7 +366,7 @@ button:hover {
 <div class="question">
   <label>How would you rate the accuracy and relevance of the information provided in CD Asia?</label>
   <div class="star-rating">
-    <input type="radio" name="content_rating" value="5" id="cr5"><label for="cr5">★</label>
+    <input type="radio" name="content_rating" value="5" id="cr5" required><label for="cr5">★</label>
     <input type="radio" name="content_rating" value="4" id="cr4"><label for="cr4">★</label>
     <input type="radio" name="content_rating" value="3" id="cr3"><label for="cr3">★</label>
     <input type="radio" name="content_rating" value="2" id="cr2"><label for="cr2">★</label>
@@ -377,12 +377,12 @@ button:hover {
 
 <div class="question">
   <label>Are there any resources or topics you would like included in the database?</label>
-  <textarea name="requested_resources"></textarea>
+  <textarea name="requested_resources" required></textarea>
 </div>
 
 <div class="question">
   <label>Do you use any other legal research application?</label>
-  <input type="radio" name="other_application" value="Yes"> Yes
+  <input type="radio" name="other_application" value="Yes" required> Yes
   <input type="radio" name="other_application" value="No"> No
 </div>
 
@@ -402,7 +402,7 @@ button:hover {
 <div class="question">
   <label>How satisfied are you with customer support (responsiveness, helpfulness)?</label>
   <div class="star-rating">
-    <input type="radio" name="support_rating" value="5" id="sup5"><label for="sup5">★</label>
+    <input type="radio" name="support_rating" value="5" id="sup5" required><label for="sup5">★</label>
     <input type="radio" name="support_rating" value="4" id="sup4"><label for="sup4">★</label>
     <input type="radio" name="support_rating" value="3" id="sup3"><label for="sup3">★</label>
     <input type="radio" name="support_rating" value="2" id="sup2"><label for="sup2">★</label>
@@ -413,7 +413,7 @@ button:hover {
 
 <div class="question">
   <label>Have you attended any CD Asia training or webinars?</label>
-  <input type="radio" name="training_attended" value="Yes"> Yes
+  <input type="radio" name="training_attended" value="Yes" required> Yes
   <input type="radio" name="training_attended" value="No"> No
 </div>
 
@@ -431,7 +431,7 @@ button:hover {
 
 <div class="question">
   <label>Would you be interested in attending a training session or refresher training?</label>
-  <input type="radio" name="training_interest" value="Yes"> Yes
+  <input type="radio" name="training_interest" value="Yes" required> Yes
   <input type="radio" name="training_interest" value="No"> No
 </div>
 
@@ -441,7 +441,7 @@ button:hover {
 <div class="question">
   <label>Overall, how satisfied are you with CD Asia?</label>
   <div class="star-rating">
-    <input type="radio" name="overall_rating" value="5" id="ov5"><label for="ov5">★</label>
+    <input type="radio" name="overall_rating" value="5" id="ov5" required><label for="ov5">★</label>
     <input type="radio" name="overall_rating" value="4" id="ov4"><label for="ov4">★</label>
     <input type="radio" name="overall_rating" value="3" id="ov3"><label for="ov3">★</label>
     <input type="radio" name="overall_rating" value="2" id="ov2"><label for="ov2">★</label>
@@ -452,7 +452,7 @@ button:hover {
 
 <div class="question">
   <label>Would you recommend CD Asia to others?</label>
-  <input type="radio" name="recommendation" value="Definitely"> Definitely<br>
+  <input type="radio" name="recommendation" value="Definitely" required> Definitely<br>
   <input type="radio" name="recommendation" value="Probably"> Probably<br>
   <input type="radio" name="recommendation" value="Not Sure"> Not Sure<br>
   <input type="radio" name="recommendation" value="Probably Not"> Probably Not<br>
@@ -464,12 +464,12 @@ button:hover {
 
 <div class="question">
   <label>What improvements would you like to see in CD Asia?</label>
-  <textarea name="improvements"></textarea>
+  <textarea name="improvements" required></textarea>
 </div>
 
 <div class="question">
   <label>Any additional comments or feedback?</label>
-  <textarea name="additional_comments"></textarea>
+  <textarea name="additional_comments" required></textarea>
 </div>
 
 <button type="submit">Submit</button>
@@ -479,7 +479,7 @@ button:hover {
 </div>
 <div id="thankYouModal" class="modal">
   <div class="modal-content">
-    <h3>Thank you for your feedback. We truly appreciate your time and effort.</h3>
+    <h3>Thank you for your feedback. <br> We truly appreciate your time and effort.</h3>
     <button onclick="closeModal()">OK</button>
   </div>
 </div>
@@ -497,6 +497,38 @@ button:hover {
 
   function updateSubmitState() {
     submitBtn.disabled = isFormBlank();
+  }
+
+  function validateAndSubmit(event) {
+    const errors = [];
+
+    const helpfulSelected = form.querySelectorAll('input[name="helpful_features[]"]:checked').length > 0 ||
+      (form.helpful_features_other && form.helpful_features_other.value.trim() !== "");
+    if (!helpfulSelected) {
+      errors.push("Please select at least one helpful feature or specify it under Others.");
+    }
+
+    if (form.other_application.value === "Yes") {
+      if (!form.other_application_name.value.trim()) {
+        errors.push("Please identify the other legal research application.");
+      }
+      if (!form.other_application_features.value.trim()) {
+        errors.push("Please share the features you like about that application.");
+      }
+    }
+
+    if (form.training_attended.value === "Yes" && !form.training_rating.value) {
+      errors.push("Please rate how helpful the training was.");
+    }
+
+    if (errors.length) {
+      event.preventDefault();
+      alert(errors.join("\\n"));
+      return false;
+    }
+
+    handleSubmit();
+    return true;
   }
 
   function handleSubmit() {
