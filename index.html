@@ -164,6 +164,18 @@ button:hover {
   cursor: not-allowed;
 }
 
+.privacy-disclaimer {
+  margin-top: 30px;
+  text-align: center;
+  font-style: italic;
+  color: #555;
+  line-height: 1.5;
+}
+
+.privacy-disclaimer + button {
+  margin-top: 16px;
+}
+
 #successMessage {
   text-align: center;
   color: green;
@@ -269,7 +281,7 @@ button:hover {
 <div class="basic-info">
   <div class="question">
     <label>Name</label>
-    <input type="text" name="name">
+    <input type="text" name="name" required>
   </div>
 
   <div class="question">
@@ -279,7 +291,7 @@ button:hover {
 
   <div class="question">
     <label>Email Address</label>
-    <input type="email" name="email">
+    <input type="email" name="email" required>
   </div>
 
   <div class="question">
@@ -472,6 +484,7 @@ button:hover {
   <textarea name="additional_comments"></textarea>
 </div>
 
+<p class="privacy-disclaimer">CD Asia values your privacy. The personal information collected through this form (such as your name, email address, and contact number) will be used solely to process your feedback and improve our services.</p>
 <button type="submit">Submit</button>
 <div id="successMessage">Submitted successfully.</div>
 
@@ -486,17 +499,15 @@ button:hover {
 <script>
   const form = document.getElementById("surveyForm");
   const submitBtn = form.querySelector('button[type="submit"]');
+  const nameInput = form.querySelector('input[name="name"]');
+  const emailInput = form.querySelector('input[name="email"]');
 
-  function isFormBlank() {
-    const fields = Array.from(form.querySelectorAll("input, textarea, select"));
-    return !fields.some(el => {
-      if (el.type === "radio" || el.type === "checkbox") return el.checked;
-      return el.value && el.value.trim() !== "";
-    });
+  function areRequiredFieldsFilled() {
+    return [nameInput, emailInput].every(input => input.value.trim() !== "");
   }
 
   function updateSubmitState() {
-    submitBtn.disabled = isFormBlank();
+    submitBtn.disabled = !areRequiredFieldsFilled();
   }
 
   function handleSubmit() {
