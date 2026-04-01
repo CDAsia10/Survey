@@ -159,11 +159,6 @@ button:hover {
   background-color: #990000;
 }
 
-#surveyForm button:disabled {
-  background-color: #ccc;
-  cursor: not-allowed;
-}
-
 .privacy-disclaimer {
   margin-top: 30px;
   text-align: center;
@@ -498,22 +493,10 @@ button:hover {
 </div>
 <script>
   const form = document.getElementById("surveyForm");
-  const submitBtn = form.querySelector('button[type="submit"]');
-  const nameInput = form.querySelector('input[name="name"]');
-  const emailInput = form.querySelector('input[name="email"]');
-
-  function areRequiredFieldsFilled() {
-    return [nameInput, emailInput].every(input => input.value.trim() !== "");
-  }
-
-  function updateSubmitState() {
-    submitBtn.disabled = !areRequiredFieldsFilled();
-  }
 
   function handleSubmit() {
     setTimeout(() => {
       form.reset();
-      updateSubmitState();
       const modal = document.getElementById("thankYouModal");
       modal.classList.add("show");
     }, 500); // give GAS time to save
@@ -523,13 +506,6 @@ button:hover {
     const modal = document.getElementById("thankYouModal");
     modal.classList.remove("show");
   }
-
-  // set initial disabled state and watch for changes
-  document.addEventListener("DOMContentLoaded", () => {
-    updateSubmitState();
-    form.addEventListener("input", updateSubmitState);
-    form.addEventListener("change", updateSubmitState);
-  });
 
    let lastScrollTop = 0;
   const header = document.getElementById("mainHeader");
