@@ -488,7 +488,7 @@ button:hover {
 <div id="thankYouModal" class="modal">
   <div class="modal-content">
     <h3>Thank you for your feedback. <br> We truly appreciate your time and effort.</h3>
-    <button onclick="closeModal()">OK</button>
+    <button type="button" onclick="closeModal()">OK</button>
   </div>
 </div>
 <script>
@@ -505,6 +505,14 @@ button:hover {
   function closeModal() {
     const modal = document.getElementById("thankYouModal");
     modal.classList.remove("show");
+    window.open("", "_self");
+    window.close();
+
+    setTimeout(() => {
+      if (!window.closed) {
+        alert("Hindi na-close ng browser ang tab automatically. Pakiclose na lang ito manually.");
+      }
+    }, 300);
   }
 
    let lastScrollTop = 0;
